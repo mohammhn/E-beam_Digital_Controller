@@ -33,7 +33,7 @@
 
 // TODO, see if you can use #DEFINE, and advantage of this
 // // Make sure this is correct
-// // 60 mA hardcoded limit, based on datasheet
+// // 60 mA/30 mA for 12/24 channel hardcoded limit, based on datasheet
 // #define maxCurrent_hardcode maxCurrent
 // #define numChannels_hardcode numChannels
 // #define bitResolution 12
@@ -41,7 +41,9 @@
 // #define numSteps numSteps_val
 // // #define numSteps pow(2, bitResolution)
 
-float maxCurrent_hardcode = 60.000; // 60 mA hardcoded limit, based on datasheet
+//float maxCurrent_hardcode = 60.000; // 60 mA hardcoded limit, based on datasheet for 12 channel
+float maxCurrent_hardcode = 30.000; // 30 mA hardcoded limit, based on datasheet for 24 channel
+
 uint16_t numChannels_hardcode = 24 * NUM_TLC5974;
 uint32_t bitResolution = 12;
 uint32_t numSteps = pow(2, bitResolution);
@@ -110,6 +112,9 @@ void setup() {
         break;
       }
       set_maxCurrent(input);
+      if (maxCurrent == 0) {
+        maxCurrent = maxCurrent_hardcode;
+      }
       break;
     }
   }
@@ -175,6 +180,10 @@ void loop() {
         // Configuration Commands
         if(command.equals("reset")){
           resetValues();
+          continue;
+        }
+        if(command.equals("dimmer")){
+          dimmerloop();
           continue;
         }
         if(command.equals("maxCurrent")){
@@ -534,5 +543,14 @@ void setChannel(int channel, int value) {
     return;
   } else {
     Serial.println("Channel: " + String(channel) + ", PWM val: " + String(valueRead));
+  }
+}
+
+void dimmerloop(){
+  for (uint16_t i = 0; i < 4096/100; ++i) {
+      for (uint16_t j = 0; j < numChannels; ++j) {
+        setChannel(j, i*100);
+      }
+      delay(100);
   }
 }

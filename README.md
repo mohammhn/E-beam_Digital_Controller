@@ -104,4 +104,37 @@
 
 
 
+# Commands for Voltage Driver (Digipots) (ends with semicolon):
+
+	read_D; 
+		reads and outputs raw pwm values for both digipots
+
+	read_D_pwm;
+		reads and outputs raw pwm values for both digipots
+
+	read_D_v;
+		reads pwm values and converts to voltage and outputs for both digipots
+
+	read_D_f;
+		reads pwm values and converts to fraction value and outputs for both digipots
+
+
+	write_D;
+		writes input values (in raw pwm) to respective channels. *channel 0 is digipot course, 1 is digipot fine
+
+	write_D_pwm;
+		writes input values (in raw pwm) to respective channels.
+
+	write_D_v;
+		writes input values (float value in mA) to respective channels.
+
+	write_D_f;
+		writes input values (fractional float value) to respective channels.
+
+	reset_D;
+		sets both digipot wipers to 0;
+
+	maxVoltage;
+		takes input current value as a float (in v), and sets maxVoltage to it (refers to the maximum voltage output for digipots)
+
 
