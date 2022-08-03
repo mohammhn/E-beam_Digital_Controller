@@ -94,8 +94,8 @@ void setup() {
     tlc.write();
   }
   
-  Serial.println("Please enter MAX current value or hit [Enter] if you want to keep existing value.");
-  Serial.println("Or type \"hardcode\" if you want to use hardcoded value.");
+  // Serial.println("Please enter MAX current value or hit [Enter] if you want to keep existing value.");
+  // Serial.println("Or type \"hardcode\" if you want to use hardcoded value.");
   while(1==1) {
     if (Serial.available() > 0) {
       String input = Serial.readStringUntil('\n');
@@ -118,9 +118,9 @@ void setup() {
       break;
     }
   }
-  Serial.println("maxCurrent = " + String(maxCurrent));
+  //Serial.println("maxCurrent = " + String(maxCurrent));
   
-  readChannels(0);
+  // readChannels(0);
 }
 
 void loop() {
@@ -390,16 +390,16 @@ void readChannels(int unitsRead) {
           return;
     }
     //outputting each channel value per line, /n delimited
-    Serial.println(String(i) + ":" + String(value) + unit_suffix);
+    // Serial.println(String(i) + ":" + String(value) + unit_suffix);
 
     // outputting channel values in single line, comma delimited
-    /*
+    
     if (i == numChannels - 1) {
       Serial.println(String(i) + ":" + String(value) + unit_suffix);
     } else {
       Serial.print(String(i) + ":" + String(value) + unit_suffix + ",");
     }
-    */
+    
     
   }
 }
@@ -542,7 +542,7 @@ void setChannel(int channel, int value) {
     Serial.println(", Value:" + String(value) + ", valueRead:" + String(valueRead));
     return;
   } else {
-    Serial.println("Channel: " + String(channel) + ", PWM val: " + String(valueRead));
+    // Serial.println("Channel: " + String(channel) + ", PWM val: " + String(valueRead));
   }
 }
 
