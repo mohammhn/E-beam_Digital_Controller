@@ -46,7 +46,7 @@ class Digipots_DS3502 {
       // Serial.println("Found DS3502 chips");
       digiPot_course.setWiper(0);
       digiPot_fine.setWiper(0);
-      Serial.println("Initialized DS3502 chips");
+      // Serial.println("Initialized DS3502 chips");
     }
 
     void resetDigipots() {

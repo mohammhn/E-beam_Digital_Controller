@@ -92,7 +92,7 @@ void setup() {
 
   //// INITIALIZE DIGIPOTS ////
   digipots.initialize_digipots();
-  digipots.resetDigipots();
+  // digipots.resetDigipots();
   ////////////////////////////
 
   Serial.println("RESET");
@@ -122,28 +122,31 @@ void setup() {
 
   // Serial.println("Please enter MAX current value or hit [Enter] if you want to keep existing value.");
   // Serial.println("Or type \"hardcode\" if you want to use hardcoded value.");
-  while (1 == 1) {
-    if (Serial.available() > 0) {
-      String input = Serial.readStringUntil('\n');
-      input.trim();
-      if (input.equals("")) {
-        if (maxCurrent == NULL || maxCurrent == 0) {
-          maxCurrent = maxCurrent_hardcode;
-        }
-        break;
-      }
+//  while (1 == 1) {
+//    if (Serial.available() > 0) {
+//      String input = Serial.readStringUntil('\n');
+//      input.trim();
+//      if (input.equals("")) {
+//        if (maxCurrent == NULL || maxCurrent == 0) {
+//          maxCurrent = maxCurrent_hardcode;
+//        }
+//        break;
+//      }
+//
+//      if (input.equals("hardcode")) {
+//        maxCurrent = maxCurrent_hardcode;
+//        break;
+//      }
+//      set_maxCurrent(input);
+//      if (maxCurrent == 0) {
+//        maxCurrent = maxCurrent_hardcode;
+//      }
+//      break;
+//    }
+//  }
 
-      if (input.equals("hardcode")) {
-        maxCurrent = maxCurrent_hardcode;
-        break;
-      }
-      set_maxCurrent(input);
-      if (maxCurrent == 0) {
-        maxCurrent = maxCurrent_hardcode;
-      }
-      break;
-    }
-  }
+  maxCurrent = maxCurrent_hardcode;
+  
   //Serial.println("maxCurrent = " + String(maxCurrent));
 
   // readChannels(0);
